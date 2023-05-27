@@ -1,16 +1,10 @@
 {
   "files": {
-    "main.css": "/led_dreams_front/static/css/main.073c9b0a.css",
-    "main.js": "/led_dreams_front/static/js/main.312090c9.js",
-    "static/js/787.2df3f28c.chunk.js": "/led_dreams_front/static/js/787.2df3f28c.chunk.js",
-    "static/media/logo.svg": "/led_dreams_front/static/media/logo.6ce24c58023cc2f8fd88fe9d219db6c6.svg",
+    "main.js": "/led_dreams_front/static/js/main.b925b0d8.js",
     "index.html": "/led_dreams_front/index.html",
-    "main.073c9b0a.css.map": "/led_dreams_front/static/css/main.073c9b0a.css.map",
-    "main.312090c9.js.map": "/led_dreams_front/static/js/main.312090c9.js.map",
-    "787.2df3f28c.chunk.js.map": "/led_dreams_front/static/js/787.2df3f28c.chunk.js.map"
+    "main.b925b0d8.js.map": "/led_dreams_front/static/js/main.b925b0d8.js.map"
   },
   "entrypoints": [
-    "static/css/main.073c9b0a.css",
-    "static/js/main.312090c9.js"
+    "static/js/main.b925b0d8.js"
   ]
 }
