@@ -1,23 +1,26 @@
 import { observer } from "mobx-react-lite";
 import React, { useContext } from "react";
-import { ListGroup } from "react-bootstrap";
+import { Card, Col, Row } from "react-bootstrap";
 import { Context } from "../index";
 
 const BrandBar = observer(() => {
   const { device } = useContext(Context);
   return (
-    <ListGroup>
+    <Row>
       {device.brands.map((el) => (
-        <ListGroup.Item
-          style={{ cursor: "pointer" }}
-          key={el.id}
-          active={el.id === device.selectedBrand.id}
-          onClick={() => device.setSelectedBrand(el)}
-        >
-          {el.name}
-        </ListGroup.Item>
+        <Col key={el.id}>
+          <Card
+            style={{ cursor: "pointer" }}
+            key={el.id}
+            className="p-3"
+            border={el.id === device.selectedBrand.id ? "danger" : "light"}
+            onClick={() => device.setSelectedBrand(el)}
+          >
+            {el.name}
+          </Card>
+        </Col>
       ))}
-    </ListGroup>
+    </Row>
   );
 });
 export default BrandBar;

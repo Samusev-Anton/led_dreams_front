@@ -6,12 +6,13 @@ import BrandBar from "../components/BrandBar";
 const Shop = () => {
   return (
     <Container>
-      <BrandBar />
-      <Row>
-        <Col md={3}>
+      <Row className="mt-2">
+        <Col xs={3}>
           <TypeBar />
         </Col>
-        <Col md={9}></Col>
+        <Col xs={9}>
+          <BrandBar />
+        </Col>
       </Row>
     </Container>
   );
