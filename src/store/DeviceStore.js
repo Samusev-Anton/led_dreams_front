@@ -14,8 +14,18 @@ export default class DeviceStore {
       { id: 1, name: "Samsung" },
       { id: 2, name: "Sony" },
     ];
+    this._selectedTypes = {};
+    this._selectedBrand = {};
 
     makeAutoObservable(this);
+  }
+
+  setSelectedBrand(brand) {
+    this._selectedBrand = brand;
+  }
+
+  setSelectedTypes(type) {
+    this._selectedTypes = type;
   }
   setBrands(brand) {
     this._brands = brand;
@@ -37,5 +47,11 @@ export default class DeviceStore {
   }
   get brands() {
     return this._brands;
+  }
+  get selectedTypes() {
+    return this._selectedTypes;
+  }
+  get selectedBrand() {
+    return this._selectedBrand;
   }
 }
