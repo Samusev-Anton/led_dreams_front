@@ -1,4 +1,5 @@
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 const REACT_APP_API_URL = "http://localhost:5050";
 
 const $host = axios.create({
@@ -10,7 +11,8 @@ const $authHost = axios.create({
 });
 
 const authInterceptor = (config) => {
-  config.headers.authorization = `Bearer ${localStorage.getItem("token")}`;
+  const token = localStorage.getItem("token");
+  config.headers.authorization = `Bearer ${token}`;
   return config;
 };
 
