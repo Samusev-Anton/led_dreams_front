@@ -8,18 +8,21 @@ import { observer } from "mobx-react-lite";
 const NavBar = observer(() => {
   const { user } = useContext(Context);
   const navigate = useNavigate();
+
   return (
     <Navbar bg="dark" variant="dark">
       <Container>
         <NavLink to={SHOP_ROUTE}>Led Dreams</NavLink>
         {user.isAuth ? (
           <Nav className="ml-auto">
-            <Button
-              variant={"outline-light"}
-              onClick={() => navigate(ADMIN_ROUTE)}
-            >
-              Admin
-            </Button>
+            {user.User.role === "ADMIN" && (
+              <Button
+                variant={"outline-light"}
+                onClick={() => navigate(ADMIN_ROUTE)}
+              >
+                Admin
+              </Button>
+            )}{" "}
             <Button
               variant={"outline-light"}
               onClick={() => navigate(LOGIN_ROUTE)}

@@ -1,12 +1,36 @@
-import React from "react";
+import React, { useContext, useState } from "react";
 import { Button, Card, Container, Form, Row } from "react-bootstrap";
-import { NavLink, useLocation } from "react-router-dom";
-import { LOGIN_ROUTE, REGISTRATION_ROUTE } from "../utils/const";
+import { NavLink, useLocation, useNavigate } from "react-router-dom";
+import { LOGIN_ROUTE, REGISTRATION_ROUTE, SHOP_ROUTE } from "../utils/const";
+import { logIn, registration } from "../http/userApi";
+import { observer } from "mobx-react-lite";
+import { Context } from "..";
 
-const Auth = () => {
+const Auth = observer(() => {
+  const { user } = useContext(Context);
   const location = useLocation();
+  const navigate = useNavigate();
   const isLogIn = location.pathname === LOGIN_ROUTE;
-  console.log(location);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const authClick = async () => {
+    let data;
+    try {
+      if (isLogIn) {
+        data = await logIn(email, password);
+      } else {
+        data = await registration(email, password);
+      }
+      user.setUser(data);
+
+      user.setIsAuth(true);
+      navigate(SHOP_ROUTE);
+    } catch (error) {
+      alert(error.response.data.message);
+    }
+  };
+
   return (
     <Container
       className="d-flex justify-content-center align-items-center"
@@ -18,10 +42,15 @@ const Auth = () => {
           <Form.Control
             placeholder="Enter your email"
             className="mt-3"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
           ></Form.Control>
           <Form.Control
             placeholder="Enter your password"
             className="mt-3 "
+            value={password}
+            type="password"
+            onChange={(e) => setPassword(e.target.value)}
           ></Form.Control>
           <Row className="d-flex mt-3 px-3" style={{ display: "flex" }}>
             {isLogIn ? (
@@ -38,6 +67,8 @@ const Auth = () => {
             <Button
               className="w-25 align-self-center"
               variant={"outline-success"}
+              // type="submit"
+              onClick={authClick}
             >
               {isLogIn ? "Enter" : "Register"}
             </Button>
@@ -46,6 +77,6 @@ const Auth = () => {
       </Card>
     </Container>
   );
-};
+});
 
 export default Auth;
