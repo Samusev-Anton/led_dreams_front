@@ -1,16 +1,16 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Button, Card, Col, Container, Image, Row } from "react-bootstrap";
 import Star from "../assets/pngwing.com.png";
+import { useParams } from "react-router-dom";
+import { getDeviceById } from "../http/DeviceApi";
 
 const Device = () => {
-  const device = { id: 1, name: "phone1", price: 200, rating: 5 };
-  const description = [
-    { id: 1, title: "Camera", description: "5mp" },
-    { id: 2, title: "Camera", description: "5mp" },
-    { id: 3, title: "Camera", description: "5mp" },
-    { id: 4, title: "Camera", description: "5mp" },
-    { id: 5, title: "Camera", description: "5mp" },
-  ];
+  const [device, setDevice] = useState({ info: [] });
+  const { id } = useParams();
+
+  useEffect(() => {
+    getDeviceById(id).then((data) => setDevice(data));
+  }, []);
 
   return (
     <Container className="mt-3">
@@ -56,7 +56,7 @@ const Device = () => {
       </Row>
       <Row className="d-flex flex-column m-3">
         <h2>Characteristics</h2>
-        {description.map((info, index) => (
+        {device.info.map((info, index) => (
           <Row
             key={info.id}
             style={{

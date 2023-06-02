@@ -27,7 +27,7 @@ export const getDevices = async () => {
 };
 
 export const addDevice = async (device) => {
-  const { data } = await $host.post("api/device", device);
+  const { data } = await $authHost.post("api/device", device);
   return data;
 };
 
